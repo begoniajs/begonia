@@ -1,3 +1,4 @@
+//=======================================================
 /**
  * @description 小程序应用组件代理对象工厂
  * @author Brave Chan on 2019.5
@@ -127,6 +128,7 @@ function combinePageLife(pageLifetimes = {}) {
 
 //=======================================================
 /**
+ * @public
  * @description 组件代理对象工厂
  * @param {Object} 原始组件对象
  * @returns {Object} 合成后的适用于小程序Component()的对象
@@ -158,3 +160,4 @@ export default function BEComponent(component = {}) {
   component = null;
   return result;
 };
+//=======================================================

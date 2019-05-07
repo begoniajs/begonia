@@ -43,6 +43,10 @@ export default {
    */
   setup(config) {
     this.debug = config.debug;
+
+    return {
+      'VMP': getVMPs
+    };
   },
   /**
    * @description 模块生命周期-初始化vmp

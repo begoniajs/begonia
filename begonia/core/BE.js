@@ -1,3 +1,4 @@
+//=======================================================
 /**
  * @description 小程序应用根级代理对象工厂
  * @author Brave Chan on 2019.5
@@ -14,6 +15,7 @@ import {
 } from './BEModules';
 //=======================================================
 /**
+ * @public
  * @description 根级代理工厂，也作为begonia的全局命名空间
  *
  * @param {Object} app 声明式开发对象
@@ -58,3 +60,4 @@ export default function BE(app = {}) {
   app = null;
   return result;
 };
+//=======================================================

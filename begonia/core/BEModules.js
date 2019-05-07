@@ -1,14 +1,19 @@
+/**
+ * @description 模块加载、模块生命周期
+ * @author Brave Chan on 2019.5
+ * @version 1.0.0
+ */
+//=======================================================
 import { getSysId, isObject, isFunction } from '../util';
-import VMP from './ViewModelProxy';
-
+//=======================================================
 const M_ID = 'be_m_id$';
-
+// debug开关
 let _debug = false;
-
+// 模块实体集合
 let m_collect = {};
-
+// 模块id结合
 let m_ids = [];
-
+// 模块生命周期需求清单列表
 let m_lifeCycles = {
   originParse: [],
   initVMP: [],
@@ -17,9 +22,11 @@ let m_lifeCycles = {
   wash: [],
   destroyVMP: []
 };
-
+// VMP模块id
 let VMP_ID = '';
-
+// 全局附加函数
+let moduleGlobal = {};
+//=======================================================
 /**
  * @private
  * 初始化模块设置
@@ -64,9 +71,15 @@ function addLifeCycle({ am, m_lifeCycles, M_ID }) {
  * 启动模块
  * @param {*} param0
  */
-function setupModule({ am, config }) {
+function setupModule({ am, config, moduleGlobal }) {
   if (isFunction(am.setup)) {
-    am.setup(config);
+    let obj = am.setup(config);
+
+    // No public temporarily
+    // add special module method
+    if (isObject(obj)) {
+      Object.assign(moduleGlobal, obj);
+    }
   }
   return am;
 }
@@ -168,10 +181,11 @@ function be_invokeBeforeUnload(am) {
   am.beforeUnload();
   // exec wash vmp
   if (isFunction(am.wash)) {
-    let ids = Object.keys(VMP.be_vmList);
+    let vmList = moduleGlobal['VMP']() || {};
+    let ids = Object.keys(vmList);
     let len = ids.length;
     while (len--) {
-      let vmp = VMP.be_vmList[ids[len]];
+      let vmp = vmList[ids[len]];
       if (vmp) {
         am.wash(vmp.master, vmp);
       }
@@ -236,7 +250,7 @@ function use(addModule = {}, config = {}) {
   ].reduce(function(prev, item) {
     item(prev);
     return prev;
-  }, { am, config, M_ID, m_ids, m_collect, m_lifeCycles, _debug });
+  }, { am, config, M_ID, m_ids, m_collect, m_lifeCycles, _debug, moduleGlobal });
 
 }
 
@@ -258,6 +272,11 @@ function destroyModule(addModule = {}) {
   be_invokeDestroy(addModule);
 }
 
+/**
+ * @public
+ * @description 设置模块们的debug模式
+ * @param {Boolean} debug 
+ */
 function setModulesDebug(debug) {
   for (let id of m_ids) {
     let m = m_collect[id];
@@ -282,3 +301,4 @@ export {
   be_invokeBeforeUnload,
   be_invokeDestroy
 };
+//=======================================================

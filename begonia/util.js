@@ -1,12 +1,13 @@
+//=======================================================
 /**
  * @description 工具函数集合
  * @auhtor Brave Chan on 2017
  * @version 1.0.0
  */
-//===================================================================
+//=======================================================
 
 /**
- * @public
+ * @internal
  * @description 格式化时间
  * @param {Number} num [required] 从1970.1.1至今的毫秒数
  * @param {*} limit 是否只返回y-m-d的形式
@@ -38,13 +39,13 @@ function formatTime(num, limit = true, noSecond = false) {
 }
 
 /**
- * @public
+ * @internal
  * @description 空函数
  */
 function noop() { }
 
 /**
- * @public
+ * @internal
  * @description 格式化分秒数字
  */
 function formatNumber(n) {
@@ -53,7 +54,7 @@ function formatNumber(n) {
 }
 
 /**
- * @public
+ * @internal
  * @description 随机字符串
  */
 function randomStr() {
@@ -63,7 +64,7 @@ function randomStr() {
 }
 
 /**
- * @public
+ * @internal
  * @description 随机字符串组成的id
  */
 function getSysId() {
@@ -71,7 +72,7 @@ function getSysId() {
 }
 
 /**
- * @public
+ * @internal
  * @description 是否是布尔型
  * @param {*} value
  */
@@ -80,7 +81,7 @@ function isBoolean(value) {
 }
 
 /**
- * @public
+ * @internal
  * @description 是否是数组
  * @param {*} value
  */
@@ -89,7 +90,7 @@ function isArray(value) {
 }
 
 /**
- * @public
+ * @internal
  * @description 是否是纯对象
  * @param {*} value
  */
@@ -98,7 +99,7 @@ function isObject(value) {
 }
 
 /**
- * @public
+ * @internal
  * @description 是否是函数
  * @param {*} value
  */
@@ -107,7 +108,7 @@ function isFunction(value) {
 }
 
 /**
- * @public
+ * @internal
  * @description 快速深度复制
  * @param {*} obj
  */
@@ -122,7 +123,7 @@ function quickDeepCopy(obj) {
 }
 
 /**
- * @public
+ * @internal
  * @description 反序列化
  * 针对{xxx='22',xxx='44'}的情况
  * 华为meta9中出现的特例（修复与否需要验证）
@@ -146,7 +147,7 @@ function unserialize(str) {
 }
 
 /**
- * @public
+ * @internal
  * @description 自增数字生成器
  * @param {*} start
  * @param {*} step
@@ -158,9 +159,9 @@ function autoincrement(start, step) {
     };
   })(start, step);
 }
-//================================================================
+//=======================================================
 /**
- * @public
+ * @internal
  * @description 是否绝对为null或undefined，能够判断'null'和'undefined'情况
  * @param {*} value
  */
@@ -169,7 +170,7 @@ function isANothing(value) {
 }
 
 /**
- * @public
+ * @internal
  * @description 是否为null或undefined
  * @param {*} value
  */
@@ -178,7 +179,7 @@ function isNothing(value) {
 }
 
 /**
- * @public
+ * @internal
  * @description 将一个对象合并到目标对象，但是排除except中指定的键名
  * @param {*} target
  * @param {*} from
@@ -210,4 +211,5 @@ export {
   isFunction,
   assignObjExcept,
   autoincrement
-}
+};
+//=======================================================
