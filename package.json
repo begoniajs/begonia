@@ -1,0 +1,35 @@
+{
+  "name": "begonia",
+  "version": "1.0.0",
+  "description": "A library for wx-miniprogram development.",
+  "main": "begonia.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "npx rollup -c",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/begoniajs/begonia.git"
+  },
+  "keywords": [
+    "begoniajs",
+    "miniprogram"
+  ],
+  "miniprogram": "miniprogram_dist",
+  "author": "Brave Chan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/begoniajs/begonia/issues"
+  },
+  "homepage": "https://github.com/begoniajs/begonia#readme",
+  "devDependencies": {
+    "rollup": "^1.11.3",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-size-snapshot": "^0.8.0",
+    "rollup-plugin-visualizer": "^1.1.1"
+  }
+}

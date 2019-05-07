@@ -2,10 +2,10 @@
 /**
  * @description begoina的入口文件,提供基本的方法
  * @author Brave Chan on 2019.5
- * @version 1.0.0 
+ * @version 1.0.0
  */
 //======================================================
-import beStates from './core/beStates';
+import beStates from './vmp/beStates';
 import { use, unload, destroyModule, setModulesDebug } from './core/BEModules';
 import BE from './core/BE';
 import BEComponent from './core/BEComponent';

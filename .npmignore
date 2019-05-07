@@ -1,0 +1,8 @@
+/node_modules/
+.editorconfig
+.gitignore
+.npmignore
+rollup.config.js
+/test/
+/analyze/
+/doc/
