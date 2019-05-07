@@ -1,3 +1,4 @@
+//=======================================================
 /**
  * @description 模块加载、模块生命周期
  * @author Brave Chan on 2019.5
@@ -27,10 +28,11 @@ let VMP_ID = '';
 // 全局附加函数
 let moduleGlobal = {};
 //=======================================================
+
 /**
  * @private
- * 初始化模块设置
- * @param {*} param0
+ * @description 初始化模块设置
+ * @param {Object} data [required]
  */
 function initModule({ am, M_ID, _debug }) {
   let id = getSysId();
@@ -43,8 +45,8 @@ function initModule({ am, M_ID, _debug }) {
 
 /**
  * @private
- * 加入模块列表
- * @param {*} param0
+ * @description 加入模块列表
+ * @param {Object} data [required]
  */
 function toModules({ am, M_ID, m_ids, m_collect }) {
   m_ids[m_ids.length] = am[M_ID];
@@ -53,8 +55,8 @@ function toModules({ am, M_ID, m_ids, m_collect }) {
 
 /**
  * @private
- * 添加声明周期
- * @param {*} am
+ * @description 添加声明周期
+ * @param {Object} data [required]
  */
 function addLifeCycle({ am, m_lifeCycles, M_ID }) {
   let lifes = Object.keys(m_lifeCycles);
@@ -68,8 +70,8 @@ function addLifeCycle({ am, m_lifeCycles, M_ID }) {
 
 /**
  * @private
- * 启动模块
- * @param {*} param0
+ * @description 启动模块
+ * @param {Object} data [required]
  */
 function setupModule({ am, config, moduleGlobal }) {
   if (isFunction(am.setup)) {
@@ -87,8 +89,7 @@ function setupModule({ am, config, moduleGlobal }) {
 /**
  * @private
  * @description 调用模块声明周期中的钩子
- * @param {*} lifeCycle
- * @param  {...any} args
+ * @param {Object} lifeCycle [required]
  */
 function invokeLifeCycle(lifeCycle, ...args) {
   let list = m_lifeCycles[lifeCycle];
@@ -103,7 +104,8 @@ function invokeLifeCycle(lifeCycle, ...args) {
 /**
  * @internal
  * @description 处理注册originParse阶段的模块
- * @param {Object} obj
+ * @param {Object} obj [required] 原始声明式数据
+ * @param {Number} type [required] 节点类型
  */
 function be_invokeOriginPares(obj = {}, type = 0) {
   let list = m_lifeCycles.originParse;
@@ -120,7 +122,7 @@ function be_invokeOriginPares(obj = {}, type = 0) {
 /**
  * @internal
  * @description 处理注册initVMP阶段的模块
- * @param {*} master
+ * @param {Object} master [required] 宿主对象
  */
 function be_invokeInitVMP(master) {
   let VMP = m_collect[VMP_ID];
@@ -141,37 +143,37 @@ function be_invokeInitVMP(master) {
 /**
  * @internal
  * @description 处理注册parse阶段的模块
- * @param {*} master
- * @param {*} vmp
+ * @param {Object} master [required] 宿主对象
+ * @param {Object} vmp [required] 代理对象
  */
 const be_invokeParse = (master, vmp) => invokeLifeCycle('parse', master, vmp);
 /**
  * @internal
  * @description 处理注册decorate阶段的模块
- * @param {*} master
- * @param {*} vmp
+ * @param {Object} master [required] 宿主对象
+ * @param {Object} vmp [required] 代理对象
  */
 const be_invokeDecorate = (master, vmp) => invokeLifeCycle('decorate', master, vmp);
 /**
  * @internal
  * @description 处理注册wash阶段的模块
- * @param {*} master
- * @param {*} vmp
+ * @param {Object} master [required] 宿主对象
+ * @param {Object} vmp [required] 代理对象
  */
 const be_invokeWash = (master, vmp) => invokeLifeCycle('wash', master, vmp);
 /**
  * @internal
  * @description 处理注册destroyVMP阶段的模块
- * @param {*} master
- * @param {*} vmp
+ * @param {Object} master [required] 宿主对象
+ * @param {Object} vmp [required] 代理对象
  */
 const be_invokeDestroyVMP = (master, vmp) => invokeLifeCycle('destroyVMP', master, vmp);
 
 /**
  * @internal
  * @description 处理注册beforeUnload阶段的模块
- * @param {*} master
- * @param {*} vmp
+ * @param {Object} master [required] 宿主对象
+ * @param {Object} vmp [required] 代理对象
  */
 function be_invokeBeforeUnload(am) {
   if (!am || !am[M_ID] || !m_collect[am[M_ID]]) {
@@ -212,8 +214,8 @@ function be_invokeBeforeUnload(am) {
 /**
  * @internal
  * @description 处理注册destroy阶段的模块
- * @param {*} master
- * @param {*} vmp
+ * @param {Object} master [required] 宿主对象
+ * @param {Object} vmp [required] 代理对象
  */
 function be_invokeDestroy(am) {
   if (!am) {
@@ -257,7 +259,7 @@ function use(addModule = {}, config = {}) {
 /**
  * @public
  * @description 卸载模块
- * @param {*} addModule
+ * @param {Object} addModule [required] 增强模块
  */
 function unload(addModule = {}) {
   be_invokeBeforeUnload(addModule);
@@ -266,7 +268,7 @@ function unload(addModule = {}) {
 /**
  * @public
  * @description 销毁模块
- * @param {*} addModule
+ * @param {Object} addModule [required] 增强模块
  */
 function destroyModule(addModule = {}) {
   be_invokeDestroy(addModule);
@@ -275,7 +277,7 @@ function destroyModule(addModule = {}) {
 /**
  * @public
  * @description 设置模块们的debug模式
- * @param {Boolean} debug 
+ * @param {Boolean} debug [required]
  */
 function setModulesDebug(debug) {
   for (let id of m_ids) {

@@ -1,3 +1,4 @@
+//==============================================================
 /**
  * @description VMP管理
  * @author Brave Chan on 2019.5
@@ -5,13 +6,19 @@
  */
 //==============================================================
 import VMP from './ViewModelProxy';
-import { VMO_ID } from './besConst';
+import { VMO_ID } from './vmpconst';
 import { isFunction } from '../util';
 import { addVMP, getVMPs, removeVMP, hasVMP } from './proxyCollect';
 import { setDebug, setInterval } from './updateProxys';
-
+//==============================================================
 let _debug = false;
-
+//==============================================================
+/**
+ * @private
+ * @description 创建vmp实例
+ * @param {Object} master [required] 宿主对象
+ * @returns {VMP} 代理对象 
+ */
 function createVMP(master) {
   let vmp = new VMP(master);
   vmp.debug = _debug;
@@ -19,7 +26,7 @@ function createVMP(master) {
   addVMP(vmp);
   return vmp;
 }
-
+//==============================================================
 export default {
   get debug() {
     return _debug;
@@ -138,3 +145,4 @@ export default {
     vmp.destroy();
   }
 };
+//==============================================================

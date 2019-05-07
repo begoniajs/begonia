@@ -5,8 +5,9 @@
  * @version 1.0.0
  */
 //=======================================================
-import { combineGlobalData, clearOriginData, COMPONENT_TYPE } from './besConst';
+import { combineGlobalData, clearOriginData  } from './beconst';
 import { isFunction, assignObjExcept } from '../util';
+import { COMPONENT_TYPE } from '../nodeType';
 import {
   be_invokeOriginPares,
   be_invokeInitVMP,
@@ -19,7 +20,7 @@ import {
 /**
  * @private
  * @description 合成created函数
- * @param {Function} created 原始created函数
+ * @param {Function} created [required] 原始created函数
  * @returns {Function} 合成后的created函数
  */
 function combineCreated(created) {
@@ -41,7 +42,7 @@ function combineCreated(created) {
 /**
  * @private
  * @description 合成attached函数
- * @param {Function} attached 原始的attached函数
+ * @param {Function} attached [required] 原始的attached函数
  * @returns {Function} 合成后的attached函数
  */
 function combineAttached(attached) {
@@ -62,7 +63,7 @@ function combineAttached(attached) {
 /**
  * @private
  * @description 合成detached函数
- * @param {Function} detached 原始detached函数
+ * @param {Function} detached [required] 原始detached函数
  * @returns {Function} 合成后的detached函数
  */
 function combineDetached(detached) {
@@ -82,7 +83,7 @@ function combineDetached(detached) {
 /**
  * @private
  * @description 合成组件生命周期
- * @param {Object} component 原始的声明式对象
+ * @param {Object} component [required] 原始的声明式对象
  * @returns {Object} 合成后的生命周期
  */
 function combineComponentLife(component = {}) {
@@ -99,7 +100,7 @@ function combineComponentLife(component = {}) {
 /**
  * @private
  * @description 合成页面的生命周期响应函数
- * @param {Object} pageLifetimes 原始页面生命周期函数集合
+ * @param {Object} pageLifetimes [required] 原始页面生命周期函数集合
  * @returns {Object} 合成后的生命周期函数集合
  */
 function combinePageLife(pageLifetimes = {}) {
@@ -130,7 +131,7 @@ function combinePageLife(pageLifetimes = {}) {
 /**
  * @public
  * @description 组件代理对象工厂
- * @param {Object} 原始组件对象
+ * @param {Object} component [required] 原始组件对象
  * @returns {Object} 合成后的适用于小程序Component()的对象
  */
 export default function BEComponent(component = {}) {

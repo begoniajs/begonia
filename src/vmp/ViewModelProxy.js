@@ -1,9 +1,16 @@
+//=========================================================
+/**
+ * @description ViewModelProxy对象
+ * @author Brave Chan on 2019.5
+ * @version 1.0.0
+ */
+//=========================================================
 import { getSysId, isObject } from '../util';
 import { addUpdate, removeUpdate } from './updateProxys';
-
+//=========================================================
 /**
  * 执行属性变动提交
- * @param {*} obj
+ * @param {Object} obj [required] 需要生效的属性集合
  */
 function doCommit(obj = {}) {
   //如果正在执行渲染，则先加入缓存对象
@@ -22,7 +29,7 @@ function doCommit(obj = {}) {
 
   addUpdate(this.id);
 }
-
+//=========================================================
 export default class VMProxy {
   constructor(master = {}) {
     this.id = getSysId();
@@ -123,6 +130,7 @@ export default class VMProxy {
     this.rendering = null;
     this.id = null;
   }
-}
+};
+//=========================================================
 
 

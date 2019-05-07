@@ -1,0 +1,5 @@
+const APP_TYPE = 1;
+const PAGE_TYPE = 2;
+const COMPONENT_TYPE = 3;
+
+export { APP_TYPE, PAGE_TYPE, COMPONENT_TYPE };

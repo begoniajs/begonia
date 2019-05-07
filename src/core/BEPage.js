@@ -1,3 +1,4 @@
+//=======================================================
 /**
  * @description 小程序应用页面代理对象工厂
  * @author Brave Chan on 2019.5
@@ -5,7 +6,8 @@
  */
 //=======================================================
 import { isFunction, assignObjExcept } from '../util';
-import { combineGlobalData, clearOriginData, PAGE_TYPE } from './besConst';
+import { combineGlobalData, clearOriginData } from './beconst';
+import { PAGE_TYPE } from '../nodeType';
 import {
   be_invokeOriginPares,
   be_invokeInitVMP,
@@ -17,7 +19,7 @@ import {
 //=======================================================
 /**
  * 页面代理对象工厂
- * @param {Object} page 声明式开发对象
+ * @param {Object} page [required] 声明式开发对象
  * @returns {Object} 适用于小程序Page()的对象
  */
 export default function BEPage(page = {}) {
@@ -81,3 +83,4 @@ export default function BEPage(page = {}) {
 
   return result;
 };
+//=======================================================

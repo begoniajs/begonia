@@ -10,7 +10,9 @@
  * @internal
  * @description 格式化时间
  * @param {Number} num [required] 从1970.1.1至今的毫秒数
- * @param {*} limit 是否只返回y-m-d的形式
+ * @param {Boolean} limit 是否只返回y-m-d的形式
+ * @param {Boolean} noSecond 是否取出时分秒
+ * @returns {String} 时间格式
  */
 function formatTime(num, limit = true, noSecond = false) {
   if (typeof num !== 'number' || !Number.isInteger(+num)) {
@@ -47,6 +49,8 @@ function noop() { }
 /**
  * @internal
  * @description 格式化分秒数字
+ * @param {Number} n [required] 数字
+ * @returns {String} 格式化后的数字
  */
 function formatNumber(n) {
   n = n.toString();
@@ -56,6 +60,7 @@ function formatNumber(n) {
 /**
  * @internal
  * @description 随机字符串
+ * @returns {String} 随机字符串
  */
 function randomStr() {
   let str;
@@ -66,6 +71,7 @@ function randomStr() {
 /**
  * @internal
  * @description 随机字符串组成的id
+ * @returns {String} `string-string`格式的字符串
  */
 function getSysId() {
   return `${randomStr()}-${randomStr()}`;
@@ -74,7 +80,8 @@ function getSysId() {
 /**
  * @internal
  * @description 是否是布尔型
- * @param {*} value
+ * @param {any} value [required]
+ * @returns {Boolean}
  */
 function isBoolean(value) {
   return typeof value === 'boolean';
@@ -83,7 +90,8 @@ function isBoolean(value) {
 /**
  * @internal
  * @description 是否是数组
- * @param {*} value
+ * @param {any} value [required]
+ * @returns {Boolean}
  */
 function isArray(value) {
   return Object.prototype.toString.call(value) === '[object Array]';
@@ -92,7 +100,8 @@ function isArray(value) {
 /**
  * @internal
  * @description 是否是纯对象
- * @param {*} value
+ * @param {any} value [required]
+ * @returns {Boolean}
  */
 function isObject(value) {
   return Object.prototype.toString.call(value) === '[object Object]';
@@ -101,7 +110,8 @@ function isObject(value) {
 /**
  * @internal
  * @description 是否是函数
- * @param {*} value
+ * @param {any} value [required]
+ * @returns {Boolean}
  */
 function isFunction(value) {
   return typeof value === 'function';
@@ -110,7 +120,8 @@ function isFunction(value) {
 /**
  * @internal
  * @description 快速深度复制
- * @param {*} obj
+ * @param {Object} obj [required] 需要被复制的对象
+ * @returns {Object} 复制后的新对象
  */
 function quickDeepCopy(obj) {
   let newOne;
@@ -149,10 +160,11 @@ function unserialize(str) {
 /**
  * @internal
  * @description 自增数字生成器
- * @param {*} start
- * @param {*} step
+ * @param {Number} start [required] 起始值
+ * @param {Number} step [required] 步进
+ * @returns {Function} 自增数字生成器
  */
-function autoincrement(start, step) {
+function autoincrement(start = 0, step = 1) {
   return (function (s = 0, t = 1, i = -1) {
     return function () {
       return (0x000000 + s + (i += t)).toString(16);
@@ -163,7 +175,8 @@ function autoincrement(start, step) {
 /**
  * @internal
  * @description 是否绝对为null或undefined，能够判断'null'和'undefined'情况
- * @param {*} value
+ * @param {any} value [required]
+ * @returns {Boolean}
  */
 function isANothing(value) {
   return value === void 0 || value === null || value === 'undefined' || value === 'null';
@@ -172,7 +185,8 @@ function isANothing(value) {
 /**
  * @internal
  * @description 是否为null或undefined
- * @param {*} value
+ * @param {any} value [required]
+ * @returns {Boolean}
  */
 function isNothing(value) {
   return value === void 0 || value === null;
@@ -181,9 +195,10 @@ function isNothing(value) {
 /**
  * @internal
  * @description 将一个对象合并到目标对象，但是排除except中指定的键名
- * @param {*} target
- * @param {*} from
- * @param {*} except
+ * @param {Object} target [required] 目标对象
+ * @param {Object} from [required] 源对象
+ * @param {string[]} except [optional] 不参与合并的键名集合
+ * @returns {Object} 合并后的目标对象
  */
 function assignObjExcept(target, from, except = []) {
   return Object.keys(from).reduce(function(prev, item) {

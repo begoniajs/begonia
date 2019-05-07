@@ -6,7 +6,8 @@
  */
 //=======================================================
 import { isFunction, assignObjExcept } from '../util';
-import { combineGlobalData, clearOriginData, APP_TYPE } from './besConst'
+import { combineGlobalData, clearOriginData } from './beconst';
+import { APP_TYPE } from '../nodeType';
 import {
   be_invokeOriginPares,
   be_invokeInitVMP,
@@ -18,7 +19,7 @@ import {
  * @public
  * @description 根级代理工厂，也作为begonia的全局命名空间
  *
- * @param {Object} app 声明式开发对象
+ * @param {Object} app [required] 声明式开发对象
  * @returns {Object} 适用于小程序App()的对象
  */
 export default function BE(app = {}) {
