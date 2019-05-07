@@ -1,6 +1,6 @@
 /**
  * 帧模拟
- * 
+ *
  * @author Brave Chan on 2018.3.5
  * @version v0.4.0
  */
@@ -18,7 +18,7 @@ let working = false;
  * 初始化
  */
 function initialize(){
-  initialized = true;  
+  initialized = true;
 }
 
 /**
@@ -36,20 +36,20 @@ function doFrame(){
     return;
   }
   clearTimeout(timer);
-  
+
   let end = new Date().getTime();
   let duration = end - startNum;
   for(let i=0,fn;(fn=cbList[i])!=null;i++){
     fn(duration);
-  }  
+  }
   startFrame();
 }
 //===============================================================
 /**
  * @public
- * 
+ *
  * 添加帧监听
- * @param {Function} handler [necessary] 每帧更新的回调函数
+ * @param {Function} handler [required] 每帧更新的回调函数
  */
 function addFrame(handler){
   if(!handler || typeof handler !== 'function' || hasFrame(handler)){
@@ -65,8 +65,8 @@ function addFrame(handler){
 /**
  * @public
  * 移除帧监听
- * 
- * @param {Function} handler [necessary] 移除对帧监听的回调函数 
+ *
+ * @param {Function} handler [required] 移除对帧监听的回调函数
  */
 function removeFrame(handler){
   if(!hasFrame(handler)){
@@ -77,15 +77,15 @@ function removeFrame(handler){
   if(cbList.length<=0){
     stopFrame();
     cbList = [];
-  }  
+  }
 }
 /**
  * @public
- * 
+ *
  * 是否使用了此回调函数对帧进行了侦听
- * @param {Function} handler [necessary] 回调函数
- * 
- * @return {Boolean} 使用了true，否则false 
+ * @param {Function} handler [required] 回调函数
+ *
+ * @return {Boolean} 使用了true，否则false
  */
 function hasFrame(handler){
   if(!handler || typeof handler !== 'function' || cbList.length<=0){
@@ -96,7 +96,7 @@ function hasFrame(handler){
 
 /**
  * @public
- * 
+ *
  * 开始帧循环
  */
 function startFrame(){
@@ -112,7 +112,7 @@ function startFrame(){
 }
 /**
  * @public
- * 
+ *
  * 结束帧循环
  */
 function stopFrame(){

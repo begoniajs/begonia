@@ -8,8 +8,8 @@ let _targetVersion = "0.0.0";
 //===========================================
 /**
  * 检查比较2个版本号
- * @param {String} currentVersion [necessary] 当前版本
- * @param {String} baseVersion [necessary] 基础版本
+ * @param {String} currentVersion [required] 当前版本
+ * @param {String} baseVersion [required] 基础版本
  * @param {Function} cb [optional] 结果回调
  */
 function check(currentVersion,baseVersion,cb){
@@ -22,9 +22,9 @@ function check(currentVersion,baseVersion,cb){
     }
 }
 /**
- * 
- * @param {*} v1 
- * @param {*} v2 
+ *
+ * @param {*} v1
+ * @param {*} v2
  */
 function compareVersion(v1, v2) {
     v1 = v1.split('.');

@@ -2,7 +2,7 @@ import Log from '../services/LogManager';
 
 /**
  * 发送post请求
- * @param {String} url [necessary] 请求地址 
+ * @param {String} url [required] 请求地址
  * @param {any} data [optional] 参数
  */
 function post(url,data={}){
@@ -31,12 +31,12 @@ function post(url,data={}){
           reject(error);
         },
       });
-    });    
+    });
 }
 
 /**
  * 发送get请求
- * @param {String} url [necessary] 请求地址 
+ * @param {String} url [required] 请求地址
  * @param {any} data [optional] 参数对象集合
  */
 function get(url,data={}){

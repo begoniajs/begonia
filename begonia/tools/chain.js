@@ -16,7 +16,7 @@ let chainList = {};
 class Chain{
   /**
    * 构造函数
-   * @param {Array} list [necessary] 需要进行链式执行的函数队列
+   * @param {Array} list [required] 需要进行链式执行的函数队列
    * @param {Function} complete [optional] 执行完毕所有函数后的回调
    * 遵从`function(error[,data])`
    * - error 如果队列执行中发生错误，将作为第一个参数被返回
@@ -57,11 +57,11 @@ class Chain{
   /**
    * 执行下一项
    * 当第一次执行时，是启动队列执行。
-   * @param {*} args 
+   * @param {*} args
    * @return {Chain}
    */
   next(...args){
-    
+
     if(this._index === void 0 || !this.execList){
       return this;
     }
@@ -78,7 +78,7 @@ class Chain{
         this._doneFn = null;
       }
       return this;
-      
+
     }
 
     let fn = this.execList[this._index];
@@ -99,8 +99,8 @@ class Chain{
   }
   /**
    * 出现错误
-   * @param {*} error 
-   * 
+   * @param {*} error
+   *
    * @return {Chain}
    */
   error(error){
@@ -111,7 +111,7 @@ class Chain{
   }
   /**
    * 结束队列的执行，直接打到完成状态
-   * @param {*} args 
+   * @param {*} args
    */
   end(...args){
     this._index = this.execList.length;
@@ -121,7 +121,7 @@ class Chain{
   /**
    * 重置
    * 重置之后的chain可以再被使用
-   * @param {Array} list [necessary] 需要进行链式执行的函数队列
+   * @param {Array} list [required] 需要进行链式执行的函数队列
    * @param {Function} complete [optional] 执行完毕所有函数后的回调
    * 遵从`function(error[,data])`
    * - error 如果队列执行中发生错误，将作为第一个参数被返回
@@ -135,7 +135,7 @@ class Chain{
     this._scope = scope;
     this._backValue = null;
     addChain(this.id);
-    
+
     return this;
   }
   /**
@@ -150,13 +150,13 @@ class Chain{
     this.execList = null;
     this.id = null;
     this._doneFn = null;
-    this._scope = null;  
+    this._scope = null;
   }
 }
 //==================private======================================
 /**
  * 生成或重置一个chain实例对应的结果状态
- * @param {String} id [necessary] chain的id 
+ * @param {String} id [required] chain的id
  */
 function addChain(id){
   if(!id){
@@ -169,7 +169,7 @@ function addChain(id){
 }
 /**
  * 移除一个chain实例对应的结果状态
- * @param {String} id [necessary] chain的id 
+ * @param {String} id [required] chain的id
  */
 function removeChain(id){
   let result = chainList[id];
@@ -180,8 +180,8 @@ function removeChain(id){
 }
 /**
  * 设置完成状态
- * @param {String} id [necessary] chain的id 
- * @param {Boolean} done [necessary] 完成状态
+ * @param {String} id [required] chain的id
+ * @param {Boolean} done [required] 完成状态
  */
 function setDone(id,done){
   let result = chainList[id];
@@ -192,8 +192,8 @@ function setDone(id,done){
 }
 /**
  * 设置结果值
- * @param {*} id [necessary] chain的id 
- * @param {*} value [necessary] 当前结果值
+ * @param {*} id [required] chain的id
+ * @param {*} value [required] 当前结果值
  */
 function setValue(id,value){
   let result = chainList[id];
@@ -206,7 +206,7 @@ function setValue(id,value){
 export default {
   /**
    * 获得一个chain对象
-   * @param {Array} list [necessary] 需要进行链式执行的函数队列
+   * @param {Array} list [required] 需要进行链式执行的函数队列
    * @param {Function} complete [optional] 执行完毕所有函数后的回调
    * 遵从`function(error[,data])`
    * - error 如果队列执行中发生错误，将作为第一个参数被返回

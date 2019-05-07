@@ -60,9 +60,9 @@ let netChangeBad = false;
 //================================================
 /**
  * @public
- * 
+ *
  * 监控网络状态
- * @param {Function} changeToGoodFn 网络变好时的回调 
+ * @param {Function} changeToGoodFn 网络变好时的回调
  * @param {Function} changeToBadFn 网络变差是的回调
  */
 function watchNet(changeToGoodFn,changeToBadFn){
@@ -80,7 +80,7 @@ function watchNet(changeToGoodFn,changeToBadFn){
             let fn = prompt[res.networkType];
             if(typeof fn === 'function'){
                 fn(_changeToGoodFn,_changeToBadFn);
-            }            
+            }
         });
     } else {
         // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
@@ -89,12 +89,12 @@ function watchNet(changeToGoodFn,changeToBadFn){
             content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。',
             showCancel:false,
         });
-    }    
+    }
 }
 
 /**
  * @public
- * 
+ *
  * 检测网络状态
  * @param {Function} goodFn [optional] 网络情况好时调用该回调
  * @param {Function} badFn [optional] 网络情况不好时调用该回调
@@ -123,9 +123,9 @@ let execList = {};
 /**
  * 将函数加入缓存队列
  * 在网络恢复后重新执行
- * @param {Function} fn [necessary] 网络恢复后需要执行的函数 
+ * @param {Function} fn [required] 网络恢复后需要执行的函数
  * @param {*} scope [optional] 函数的this指向
- * 
+ *
  * @return {Number} 队列id，用来删除缓存到队列中的函数
  */
 function addSquence(fn,scope){
@@ -159,7 +159,7 @@ function execSquence(){
 }
 /**
  * 移除队列中函数
- * @param {String | Number} id [necessary] 缓存在队列中的id 
+ * @param {String | Number} id [required] 缓存在队列中的id
  */
 function removeItem(id){
     let index;
@@ -180,15 +180,15 @@ export default {
     },
     /**
      * @public
-     * 
+     *
      * 监控网络状态
-     * @param {Function} changeToGoodFn 网络变好时的回调 
+     * @param {Function} changeToGoodFn 网络变好时的回调
      * @param {Function} changeToBadFn 网络变差是的回调
      */
     checkNet,
     /**
      * @public
-     * 
+     *
      * 检测网络状态
      * @param {Function} goodFn [optional] 网络情况好时调用该回调
      * @param {Function} badFn [optional] 网络情况不好时调用该回调
@@ -197,15 +197,15 @@ export default {
     /**
      * 将函数加入缓存队列
      * 在网络恢复后重新执行
-     * @param {Function} fn [necessary] 网络恢复后需要执行的函数 
+     * @param {Function} fn [required] 网络恢复后需要执行的函数
      * @param {*} scope [optional] 函数的this指向
-     * 
+     *
      * @return {Number} 队列id，用来删除缓存到队列中的函数
      */
     addSquence,
     /**
      * 移除队列中函数
-     * @param {String | Number} id [necessary] 缓存在队列中的id 
+     * @param {String | Number} id [required] 缓存在队列中的id
      */
     removeItem,
     /**

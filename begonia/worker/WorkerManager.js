@@ -14,8 +14,8 @@ let _workerKeys = {};
 //=============private========================
 /**
  * 执行发送消息
- * @param {*} data 
- * @param {*} cb 
+ * @param {*} data
+ * @param {*} cb
  */
 function doMessage(data,cb=noop){
     if(!_cWorker){
@@ -32,15 +32,15 @@ function doMessage(data,cb=noop){
         terminateAndNext();
         _working = false;
 
-        cb(null,res);        
+        cb(null,res);
     });
-    
+
     _cWorker.postMessage(data);
 }
 /**
  * 创建worker
- * @param {*} workerKey 
- * @param {*} path 
+ * @param {*} workerKey
+ * @param {*} path
  */
 function createWorker(workerKey,path){
     _cKey = workerKey;
@@ -48,7 +48,7 @@ function createWorker(workerKey,path){
     if(!_cWorker){
         if(_debug){
             console.error("In WorkerManager message(),can not create worker by this workerKey:",workerKey,path);
-        }        
+        }
     }
     return _cWorker;
 }
@@ -75,7 +75,7 @@ function noop(){}
  * @param {*} opt
  * opt{
  *  [workerKey]:workerPath,
- * } 
+ * }
  */
 function rejester(opt={}){
     Object.assign(_workers,opt);
@@ -88,7 +88,7 @@ function rejester(opt={}){
 /**
  * @public
  * 向worker发送消息
- * @param {*} workerKey [necessary] 要使用的worker的键名 
+ * @param {*} workerKey [required] 要使用的worker的键名
  * @param {*} data [optional] 发送的消息数据对象
  */
 function message(workerKey,data={},cb=noop){
@@ -101,12 +101,12 @@ function message(workerKey,data={},cb=noop){
             detail:'In WorkerManager message(),PARAMS_ERROR.'
         });
     }
-    
+
     let path = _workers[workerKey];
-    
+
     if(!path){
         if(_debug){
-            console.error("In WorkerManager message(),can not find script in path list:",workerKey,_workers);            
+            console.error("In WorkerManager message(),can not find script in path list:",workerKey,_workers);
         }
         return cb({
             message:"CAN_NOT_FIND_WORKER",
@@ -123,7 +123,7 @@ function message(workerKey,data={},cb=noop){
         waitList[waitList.length] = obj;
         if(_debug){
             console.log('In WorkerManager message(),some one add in waiting===>',obj);
-        }        
+        }
         return;
     }
     _working = true;
@@ -131,7 +131,7 @@ function message(workerKey,data={},cb=noop){
 
     if(!worker){
         _working = false;
-       
+
         return cb({
             message:'CREATE_WORKER_ERROR',
             detail:`In WorkerManager message,can not create worker.`,
@@ -140,8 +140,8 @@ function message(workerKey,data={},cb=noop){
 
     if(_debug){
         console.log('In WorkerManager message(),will setup worker and send message ===>',workerKey,data);
-    } 
-    
+    }
+
     //执行发送消息
     doMessage(data,cb);
 }
@@ -162,7 +162,7 @@ function clearWorkers(){
 /**
  * @public
  * 应用配置文件
- * @param {*} config 
+ * @param {*} config
  */
 function config(config){
     let list = config.workers;
@@ -217,7 +217,7 @@ export default {
     /**
      * @public
      * 应用配置文件
-     * @param {*} config 
+     * @param {*} config
      */
     config,
     /**
@@ -226,30 +226,30 @@ export default {
      * @param {*} opt
      * opt{
      *  [workerKey]:workerPath,
-     * } 
+     * }
      */
     rejester,
     /**
      * @public
      * 启动指定worker
-     * @param {*} name [necessary]
+     * @param {*} name [required]
      * @param {Object} msg [optional]
-     * 
-     * @return {Promise} 
-     * 
+     *
+     * @return {Promise}
+     *
      * `resolve`worker返回值；
-     * 
+     *
      * `reject`worker返回错误
      */
     // setupWorker,
     /**
      * @public
      * 向worker发送数据
-     * @param {*} obj 
-     * @return {Promise} 
-     * 
+     * @param {*} obj
+     * @return {Promise}
+     *
      * `resolve`worker返回值；
-     * 
+     *
      * `reject`worker返回错误
      */
     message,
