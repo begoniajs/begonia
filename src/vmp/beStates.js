@@ -2,7 +2,7 @@
 /**
  * @description VMP管理
  * @author Brave Chan on 2019.5
- * @version 1.0.0
+ * @version 1.0.1
  */
 //==============================================================
 import VMP from './ViewModelProxy';

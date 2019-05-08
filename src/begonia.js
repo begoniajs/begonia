@@ -2,7 +2,7 @@
 /**
  * @description begoina的入口文件,提供基本的方法
  * @author Brave Chan on 2019.5
- * @version 1.0.0
+ * @version 1.0.1
  */
 //======================================================
 import beStates from './vmp/beStates';
