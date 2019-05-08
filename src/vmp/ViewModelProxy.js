@@ -10,7 +10,7 @@ import { addUpdate, removeUpdate } from './updateProxys';
 //=========================================================
 /**
  * 执行属性变动提交
- * @param {Object} obj [required] 需要生效的属性集合
+ * @param {object} obj [required] 需要生效的属性集合
  */
 function doCommit(obj = {}) {
   //如果正在执行渲染，则先加入缓存对象

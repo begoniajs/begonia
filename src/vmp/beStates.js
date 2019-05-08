@@ -16,8 +16,8 @@ let _debug = false;
 /**
  * @private
  * @description 创建vmp实例
- * @param {Object} master [required] 宿主对象
- * @returns {VMP} 代理对象 
+ * @param {object} master [required] 宿主对象
+ * @returns {VMP} 代理对象
  */
 function createVMP(master) {
   let vmp = new VMP(master);
@@ -37,6 +37,9 @@ export default {
   },
   set interval(value) {
     setInterval(value || 100);
+  },
+  get interval() {
+    return _interval;
   },
   get be_vmList() {
     return getVMPs();

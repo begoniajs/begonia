@@ -19,8 +19,8 @@ import {
  * @public
  * @description 根级代理工厂，也作为begonia的全局命名空间
  *
- * @param {Object} app [required] 声明式开发对象
- * @returns {Object} 适用于小程序App()的对象
+ * @param {object} app [required] 声明式开发对象
+ * @returns {object} 适用于小程序App()的对象
  */
 export default function BE(app = {}) {
   let data = combineGlobalData(app.data);

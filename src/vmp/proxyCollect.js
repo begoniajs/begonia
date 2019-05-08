@@ -35,7 +35,7 @@ function removeVMP(vmpId) {
 /**
  * @internal
  * @description 获取vmp集合
- * @returns {Object} vmp已创建对象集合
+ * @returns {object} vmp已创建对象集合
  */
 function getVMPs() {
   return vmpList;

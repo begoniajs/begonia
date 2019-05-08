@@ -32,7 +32,7 @@ let moduleGlobal = {};
 /**
  * @private
  * @description 初始化模块设置
- * @param {Object} data [required]
+ * @param {object} data [required]
  */
 function initModule({ am, M_ID, _debug }) {
   let id = getSysId();
@@ -46,7 +46,7 @@ function initModule({ am, M_ID, _debug }) {
 /**
  * @private
  * @description 加入模块列表
- * @param {Object} data [required]
+ * @param {object} data [required]
  */
 function toModules({ am, M_ID, m_ids, m_collect }) {
   m_ids[m_ids.length] = am[M_ID];
@@ -56,7 +56,7 @@ function toModules({ am, M_ID, m_ids, m_collect }) {
 /**
  * @private
  * @description 添加声明周期
- * @param {Object} data [required]
+ * @param {object} data [required]
  */
 function addLifeCycle({ am, m_lifeCycles, M_ID }) {
   let lifes = Object.keys(m_lifeCycles);
@@ -71,7 +71,7 @@ function addLifeCycle({ am, m_lifeCycles, M_ID }) {
 /**
  * @private
  * @description 启动模块
- * @param {Object} data [required]
+ * @param {object} data [required]
  */
 function setupModule({ am, config, moduleGlobal }) {
   if (isFunction(am.setup)) {
@@ -89,7 +89,7 @@ function setupModule({ am, config, moduleGlobal }) {
 /**
  * @private
  * @description 调用模块声明周期中的钩子
- * @param {Object} lifeCycle [required]
+ * @param {object} lifeCycle [required]
  */
 function invokeLifeCycle(lifeCycle, ...args) {
   let list = m_lifeCycles[lifeCycle];
@@ -104,7 +104,7 @@ function invokeLifeCycle(lifeCycle, ...args) {
 /**
  * @internal
  * @description 处理注册originParse阶段的模块
- * @param {Object} obj [required] 原始声明式数据
+ * @param {object} obj [required] 原始声明式数据
  * @param {Number} type [required] 节点类型
  */
 function be_invokeOriginPares(obj = {}, type = 0) {
@@ -122,7 +122,7 @@ function be_invokeOriginPares(obj = {}, type = 0) {
 /**
  * @internal
  * @description 处理注册initVMP阶段的模块
- * @param {Object} master [required] 宿主对象
+ * @param {object} master [required] 宿主对象
  */
 function be_invokeInitVMP(master) {
   let VMP = m_collect[VMP_ID];
@@ -143,37 +143,37 @@ function be_invokeInitVMP(master) {
 /**
  * @internal
  * @description 处理注册parse阶段的模块
- * @param {Object} master [required] 宿主对象
- * @param {Object} vmp [required] 代理对象
+ * @param {object} master [required] 宿主对象
+ * @param {object} vmp [required] 代理对象
  */
 const be_invokeParse = (master, vmp) => invokeLifeCycle('parse', master, vmp);
 /**
  * @internal
  * @description 处理注册decorate阶段的模块
- * @param {Object} master [required] 宿主对象
- * @param {Object} vmp [required] 代理对象
+ * @param {object} master [required] 宿主对象
+ * @param {object} vmp [required] 代理对象
  */
 const be_invokeDecorate = (master, vmp) => invokeLifeCycle('decorate', master, vmp);
 /**
  * @internal
  * @description 处理注册wash阶段的模块
- * @param {Object} master [required] 宿主对象
- * @param {Object} vmp [required] 代理对象
+ * @param {object} master [required] 宿主对象
+ * @param {object} vmp [required] 代理对象
  */
 const be_invokeWash = (master, vmp) => invokeLifeCycle('wash', master, vmp);
 /**
  * @internal
  * @description 处理注册destroyVMP阶段的模块
- * @param {Object} master [required] 宿主对象
- * @param {Object} vmp [required] 代理对象
+ * @param {object} master [required] 宿主对象
+ * @param {object} vmp [required] 代理对象
  */
 const be_invokeDestroyVMP = (master, vmp) => invokeLifeCycle('destroyVMP', master, vmp);
 
 /**
  * @internal
  * @description 处理注册beforeUnload阶段的模块
- * @param {Object} master [required] 宿主对象
- * @param {Object} vmp [required] 代理对象
+ * @param {object} master [required] 宿主对象
+ * @param {object} vmp [required] 代理对象
  */
 function be_invokeBeforeUnload(am) {
   if (!am || !am[M_ID] || !m_collect[am[M_ID]]) {
@@ -214,8 +214,8 @@ function be_invokeBeforeUnload(am) {
 /**
  * @internal
  * @description 处理注册destroy阶段的模块
- * @param {Object} master [required] 宿主对象
- * @param {Object} vmp [required] 代理对象
+ * @param {object} master [required] 宿主对象
+ * @param {object} vmp [required] 代理对象
  */
 function be_invokeDestroy(am) {
   if (!am) {
@@ -232,8 +232,8 @@ function be_invokeDestroy(am) {
 /**
  * @public
  * @description 增加程序运行中需要使用的增强模块
- * @param {Object} addModule [required] 增强模块
- * @param {Object} config [optional] 模块设置
+ * @param {object} addModule [required] 增强模块
+ * @param {object} config [optional] 模块设置
  * 如果设置了`config`参数并且模块也提供了`setup`方法，
  * 那么这个`config`对象将会作为`setup()`的参数传入模块中。
  * 模块利用其进行初始化配置。
@@ -259,7 +259,7 @@ function use(addModule = {}, config = {}) {
 /**
  * @public
  * @description 卸载模块
- * @param {Object} addModule [required] 增强模块
+ * @param {object} addModule [required] 增强模块
  */
 function unload(addModule = {}) {
   be_invokeBeforeUnload(addModule);
@@ -268,7 +268,7 @@ function unload(addModule = {}) {
 /**
  * @public
  * @description 销毁模块
- * @param {Object} addModule [required] 增强模块
+ * @param {object} addModule [required] 增强模块
  */
 function destroyModule(addModule = {}) {
   be_invokeDestroy(addModule);

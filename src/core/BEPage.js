@@ -19,8 +19,8 @@ import {
 //=======================================================
 /**
  * 页面代理对象工厂
- * @param {Object} page [required] 声明式开发对象
- * @returns {Object} 适用于小程序Page()的对象
+ * @param {object} page [required] 声明式开发对象
+ * @returns {object} 适用于小程序Page()的对象
  */
 export default function BEPage(page = {}) {
   let data = combineGlobalData(page.data);

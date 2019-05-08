@@ -120,8 +120,8 @@ function isFunction(value) {
 /**
  * @internal
  * @description 快速深度复制
- * @param {Object} obj [required] 需要被复制的对象
- * @returns {Object} 复制后的新对象
+ * @param {object} obj [required] 需要被复制的对象
+ * @returns {object} 复制后的新对象
  */
 function quickDeepCopy(obj) {
   let newOne;
@@ -162,7 +162,7 @@ function unserialize(str) {
  * @description 自增数字生成器
  * @param {Number} start [required] 起始值
  * @param {Number} step [required] 步进
- * @returns {Function} 自增数字生成器
+ * @returns {function} 自增数字生成器
  */
 function autoincrement(start = 0, step = 1) {
   return (function (s = 0, t = 1, i = -1) {
@@ -195,10 +195,10 @@ function isNothing(value) {
 /**
  * @internal
  * @description 将一个对象合并到目标对象，但是排除except中指定的键名
- * @param {Object} target [required] 目标对象
- * @param {Object} from [required] 源对象
+ * @param {object} target [required] 目标对象
+ * @param {object} from [required] 源对象
  * @param {string[]} except [optional] 不参与合并的键名集合
- * @returns {Object} 合并后的目标对象
+ * @returns {object} 合并后的目标对象
  */
 function assignObjExcept(target, from, except = []) {
   return Object.keys(from).reduce(function(prev, item) {

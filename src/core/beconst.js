@@ -14,7 +14,7 @@ import {
 /**
  * @private
  * @description 合成全局data对象
- * @param {Object} data  [required]
+ * @param {object} data  [required]
  */
 function combineGlobalData(data) {
   let i = 3;
@@ -25,7 +25,7 @@ function combineGlobalData(data) {
 /**
  * @private
  * @description 清理释放原始的对象
- * @param {Object} data [required] 原始数据
+ * @param {object} data [required] 原始数据
  */
 function clearOriginData(data) {
   if (!data) {

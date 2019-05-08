@@ -20,8 +20,8 @@ import {
 /**
  * @private
  * @description 合成created函数
- * @param {Function} created [required] 原始created函数
- * @returns {Function} 合成后的created函数
+ * @param {function} created [required] 原始created函数
+ * @returns {function} 合成后的created函数
  */
 function combineCreated(created) {
   return (function (fn, isFunction, be_invokeInitVMP, COMPONENT_TYPE) {
@@ -42,8 +42,8 @@ function combineCreated(created) {
 /**
  * @private
  * @description 合成attached函数
- * @param {Function} attached [required] 原始的attached函数
- * @returns {Function} 合成后的attached函数
+ * @param {function} attached [required] 原始的attached函数
+ * @returns {function} 合成后的attached函数
  */
 function combineAttached(attached) {
   return (function (fn, isFunction, be_invokeParse, be_invokeDecorate) {
@@ -63,8 +63,8 @@ function combineAttached(attached) {
 /**
  * @private
  * @description 合成detached函数
- * @param {Function} detached [required] 原始detached函数
- * @returns {Function} 合成后的detached函数
+ * @param {function} detached [required] 原始detached函数
+ * @returns {function} 合成后的detached函数
  */
 function combineDetached(detached) {
   return (function (fn, isFunction, be_invokeWash, be_invokeDestroyVMP) {
@@ -83,8 +83,8 @@ function combineDetached(detached) {
 /**
  * @private
  * @description 合成组件生命周期
- * @param {Object} component [required] 原始的声明式对象
- * @returns {Object} 合成后的生命周期
+ * @param {object} component [required] 原始的声明式对象
+ * @returns {object} 合成后的生命周期
  */
 function combineComponentLife(component = {}) {
   return {
@@ -100,8 +100,8 @@ function combineComponentLife(component = {}) {
 /**
  * @private
  * @description 合成页面的生命周期响应函数
- * @param {Object} pageLifetimes [required] 原始页面生命周期函数集合
- * @returns {Object} 合成后的生命周期函数集合
+ * @param {object} pageLifetimes [required] 原始页面生命周期函数集合
+ * @returns {object} 合成后的生命周期函数集合
  */
 function combinePageLife(pageLifetimes = {}) {
   return {
@@ -131,8 +131,8 @@ function combinePageLife(pageLifetimes = {}) {
 /**
  * @public
  * @description 组件代理对象工厂
- * @param {Object} component [required] 原始组件对象
- * @returns {Object} 合成后的适用于小程序Component()的对象
+ * @param {object} component [required] 原始组件对象
+ * @returns {object} 合成后的适用于小程序Component()的对象
  */
 export default function BEComponent(component = {}) {
   let data = combineGlobalData(component.data);
