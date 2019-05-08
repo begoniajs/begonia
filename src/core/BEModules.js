@@ -2,7 +2,7 @@
 /**
  * @description 模块加载、模块生命周期
  * @author Brave Chan on 2019.5
- * @version 1.0.1
+ * @version 1.0.2
  */
 //=======================================================
 import { getSysId, isObject, isFunction } from '../util';

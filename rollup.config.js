@@ -5,13 +5,13 @@ import visualizer from 'rollup-plugin-visualizer';
 export default {
   input: './src/begonia.js',
   output: {
-    file: './miniprogram_dist/begonia.js',
+    file: './dist/index.js',
     format: 'es',
-    banner: `// begonia.js v1.0.0 Brave Chan`
+    banner: `// begonia.js v1.0.2 Brave Chan`
   },
   plugins: [
     clear({
-      targets: ['miniprogram_dist']
+      targets: ['dist']
     }),
     sizeSnapshot({
       snapshotPath: './analyze/.size-snapshot.json'

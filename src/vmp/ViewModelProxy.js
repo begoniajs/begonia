@@ -2,7 +2,7 @@
 /**
  * @description ViewModelProxy对象
  * @author Brave Chan on 2019.5
- * @version 1.0.1
+ * @version 1.0.2
  */
 //=========================================================
 import { getSysId, isObject } from '../util';

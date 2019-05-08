@@ -1,9 +1,9 @@
 {
   "name": "begonia",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A library for wx-miniprogram development.",
-  "main": "miniprogram_dist/begonia.js",
-  "types": "types/begonia.d.ts",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "directories": {
     "doc": "doc",
     "test": "test"
@@ -20,7 +20,7 @@
     "begoniajs",
     "miniprogram"
   ],
-  "miniprogram": "miniprogram_dist",
+  "miniprogram": "dist",
   "author": "Brave Chan",
   "license": "MIT",
   "bugs": {
