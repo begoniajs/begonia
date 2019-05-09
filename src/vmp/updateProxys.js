@@ -2,7 +2,7 @@
 /**
  * @description 属性更新和生效
  * @author Brave Chan on 2019.5
- * @version 1.0.2
+ * @version 1.0.3
  */
 //=========================================================
 import { findVMP } from './proxyCollect';

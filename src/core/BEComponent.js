@@ -2,7 +2,7 @@
 /**
  * @description 小程序应用组件代理对象工厂
  * @author Brave Chan on 2019.5
- * @version 1.0.2
+ * @version 1.0.3
  */
 //=======================================================
 import { combineGlobalData, clearOriginData  } from './beconst';

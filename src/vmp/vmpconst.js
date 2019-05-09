@@ -2,7 +2,7 @@
 /**
  * @description vmp包的常量集合
  * @author Brave Chan on 2019.5
- * @version 1.0.2
+ * @version 1.0.3
  */
 //=========================================================
 const VMO_ID = 'vmo_id$';

@@ -2,7 +2,7 @@
 /**
  * @description 小程序应用根级代理对象工厂
  * @author Brave Chan on 2019.5
- * @version 1.0.2
+ * @version 1.0.3
  */
 //=======================================================
 import { isFunction, assignObjExcept } from '../util';
