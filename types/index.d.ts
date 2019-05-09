@@ -5,15 +5,6 @@
  * @param {object} app [required] 声明式开发对象
  * @returns {object} 适用于小程序App()的对象
  */
-export = BE;
-
-/**
- * @public
- * @description 根级代理工厂，也作为begonia的全局命名空间
- *
- * @param {object} app [required] 声明式开发对象
- * @returns {object} 适用于小程序App()的对象
- */
 declare function BE(app: object): object;
 
 declare namespace BE {
@@ -65,3 +56,12 @@ declare namespace BE {
    */
   export function component(component: any): any;
 }
+
+/**
+ * @public
+ * @description 根级代理工厂，也作为begonia的全局命名空间
+ *
+ * @param {object} app [required] 声明式开发对象
+ * @returns {object} 适用于小程序App()的对象
+ */
+export default BE;
