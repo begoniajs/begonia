@@ -20,6 +20,9 @@
 $ npm install begonia
 ```
 
+接下来，我们需要做的，就是使用微信开发者工具中的工具->构建npm命令，对已经安装好的npm模块进行构建。
+关于如何使用微信开发者工具构建npm模块，你可以参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
+
 ### 2. 导入模块
 
 在小程序的`app.js`、页面或者自定义组件实例中，导入入口文件:
@@ -255,7 +258,7 @@ BE.setInterval(200); //设置200毫秒间隔
 
 ## 使用增强模块
 
-begonia遵循模块化原则，提供的各项功能均保持相对独立的状态。包括内部的使用的代理对象和延迟提交模块`VMP`也是独立的。
+begonia遵循模块化原则，提供的各项功能均保持相对独立的状态。包括内部使用的代理对象和延迟提交模块`VMP`也是独立的。
 只不过，框架在建立之初就进行了自动装载。
 
 begonia提供的装载模块的方法非常简单：
@@ -283,7 +286,6 @@ BE.use(Bex);
 ```js
 Page(BE.page({
   //...
-  vmp:null,
   onLoad: function () {
     //访问store实例
     let store = this.$store;
