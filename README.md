@@ -1,6 +1,6 @@
 # Begonia 介绍
 
-[begonia](https://github.com/begoniajs/begonia)是一个为微信小程序开发而建立的开源、简单和轻量的开发框架。
+[begonia](https://github.com/begoniajs/begonia/tree/dev-1.x)是一个为微信小程序开发而建立的开源、简单和轻量的开发框架。
 
 具有如下特性:
 
@@ -312,8 +312,7 @@ Page(BE.page({
 如果想要具体了解各种使用方法，可以查看如下文档:
 - [创建小程序页面和组件对象](https://github.com/begoniajs/begonia/tree/master/doc)
 - [VMP代理对象](https://github.com/begoniajs/begonia/tree/master/doc)
-- [模块的生命周期](https://github.com/begoniajs/begonia/tree/master/doc)
-- [开发自定义模块](https://github.com/begoniajs/begonia/tree/master/doc)
+- [开发自定义模块](https://github.com/begoniajs/begonia/blob/dev-1.x/doc/%E5%BC%80%E5%8F%91%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A2%9E%E5%BC%BA%E6%A8%A1%E5%9D%97.md)
 - [API](https://github.com/begoniajs/begonia/tree/master/doc/api)
 
 ## 初衷
