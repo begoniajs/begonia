@@ -82,7 +82,7 @@ function validateVMPs(vmpIds = []) {
       continue;
     }
     if (_debug) {
-      console.info('In updateProxys validateVMPs(), will validate the vmp ====>', vmp);
+      console.info('In updateProxys validateVMPs(), will validate the vmp ====>', id);
     }
     vmp.validate();
   }
