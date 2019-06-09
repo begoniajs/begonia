@@ -23,20 +23,19 @@ import {
  * @param {function} created [required] 原始created函数
  * @returns {function} 合成后的created函数
  */
-function combineCreated(created) {
-  return (function (fn, isFunction, be_invokeInitVMP, COMPONENT_TYPE) {
-    return function () {
-      if (!this) {
-        console.error('In Component created, can not get the this obj!!', this);
-      } else {
-        this.be_nodeType = COMPONENT_TYPE;
-        this.vmp = be_invokeInitVMP(this);
-      }
-      if (isFunction(fn)) {
-        fn.call(this);
-      }
-    };
-  })(created, isFunction, be_invokeInitVMP, COMPONENT_TYPE);
+function combineCreated(created, isFunction, be_invokeInitVMP, COMPONENT_TYPE) {
+  
+  return function () {
+    if (!this) {
+      console.error('In Component created, can not get the this obj!!', this);
+    } else {
+      this.be_nodeType = COMPONENT_TYPE;
+      this.vmp = be_invokeInitVMP(this);
+    }
+    if (isFunction(created)) {
+      created.call(this);
+    }
+  };
 }
 
 /**
@@ -45,19 +44,17 @@ function combineCreated(created) {
  * @param {function} attached [required] 原始的attached函数
  * @returns {function} 合成后的attached函数
  */
-function combineAttached(attached) {
-  return (function (fn, isFunction, be_invokeParse, be_invokeDecorate) {
-    return function () {
-      if (this && this.vmp) {
-        be_invokeParse(this, this.vmp);
-        be_invokeDecorate(this, this.vmp);
-      }
+function combineAttached(attached, isFunction, be_invokeParse, be_invokeDecorate) {
+  return function () {
+    if (this && this.vmp) {
+      be_invokeParse(this, this.vmp);
+      be_invokeDecorate(this, this.vmp);
+    }
 
-      if (isFunction(fn)) {
-        fn.call(this);
-      }
-    };
-  })(attached, isFunction, be_invokeParse, be_invokeDecorate);
+    if (isFunction(attached)) {
+      attached.call(this);
+    }
+  };
 }
 
 /**
@@ -66,18 +63,16 @@ function combineAttached(attached) {
  * @param {function} detached [required] 原始detached函数
  * @returns {function} 合成后的detached函数
  */
-function combineDetached(detached) {
-  return (function (fn, isFunction, be_invokeWash, be_invokeDestroyVMP) {
-    return function () {
-      if (this && this.vmp) {
-        be_invokeWash(this, this.vmp);
-        be_invokeDestroyVMP(this, this.vmp);
-      }
-      if (isFunction(fn)) {
-        fn.call(this);
-      }
-    };
-  })(detached, isFunction, be_invokeWash, be_invokeDestroyVMP);
+function combineDetached(detached, isFunction, be_invokeWash, be_invokeDestroyVMP) {
+  return function () {
+    if (this && this.vmp) {
+      be_invokeWash(this, this.vmp);
+      be_invokeDestroyVMP(this, this.vmp);
+    }
+    if (isFunction(detached)) {
+      detached.call(this);
+    }
+  };
 }
 
 /**
@@ -88,9 +83,9 @@ function combineDetached(detached) {
  */
 function combineComponentLife(component = {}) {
   return {
-    created: combineCreated(component.created),
-    attached: combineAttached(component.attached),
-    detached: combineDetached(component.detached),
+    created: combineCreated(component.created, isFunction, be_invokeInitVMP, COMPONENT_TYPE),
+    attached: combineAttached(component.attached, isFunction, be_invokeParse, be_invokeDecorate),
+    detached: combineDetached(component.detached, isFunction, be_invokeWash, be_invokeDestroyVMP),
     ready: component.ready,
     moved: component.moved,
     error: component.error
