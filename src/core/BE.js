@@ -37,8 +37,8 @@ export default function BE(app = {}) {
           console.error('In App onLaunch, can not get the this obj!!', this);
         } else {
           this.vmp = be_invokeInitVMP(this);
-          be_invokeParse(this, this.vmp);
           be_invokeDecorate(this, this.vmp);
+          be_invokeParse(this, this.vmp);
         }
         if (isFunction) {
           fn.call(this, options);

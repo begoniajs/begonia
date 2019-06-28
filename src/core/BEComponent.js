@@ -49,8 +49,8 @@ function combineAttached(attached) {
   return (function (fn, isFunction, be_invokeParse, be_invokeDecorate) {
     return function () {
       if (this && this.vmp) {
-        be_invokeParse(this, this.vmp);
         be_invokeDecorate(this, this.vmp);
+        be_invokeParse(this, this.vmp);
       }
 
       if (isFunction(fn)) {

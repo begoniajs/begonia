@@ -18,8 +18,8 @@ let m_ids = [];
 let m_lifeCycles = {
   originParse: [],
   initVMP: [],
-  parse: [],
   decorate: [],
+  parse: [],
   wash: [],
   destroyVMP: []
 };

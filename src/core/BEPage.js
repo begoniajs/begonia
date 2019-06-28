@@ -36,8 +36,8 @@ export default function BEPage(page = {}) {
           console.error('In Page onLaunch, can not get the this obj!!', this);
         } else {
           this.vmp = be_invokeInitVMP(this);
-          be_invokeParse(this, this.vmp);
           be_invokeDecorate(this, this.vmp);
+          be_invokeParse(this, this.vmp);
         }
         if (isFunction(fn)) {
           fn.call(this, options);
