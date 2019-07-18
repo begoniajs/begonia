@@ -23,7 +23,7 @@ import {
  * @param {function} created [required] 原始created函数
  * @returns {function} 合成后的created函数
  */
-function combineCreated(created, isFunction, be_invokeInitVMP, COMPONENT_TYPE) {
+function combineCreated(created, isFunction, be_invokeInitVMP, be_invokeParse, be_invokeDecorate, COMPONENT_TYPE) {
 
   return function () {
     if (!this) {
@@ -32,6 +32,12 @@ function combineCreated(created, isFunction, be_invokeInitVMP, COMPONENT_TYPE) {
       this.be_nodeType = COMPONENT_TYPE;
       this.vmp = be_invokeInitVMP(this);
     }
+
+    if (this && this.vmp) {
+      be_invokeDecorate(this, this.vmp);
+      be_invokeParse(this, this.vmp);
+    }
+
     if (isFunction(created)) {
       created.call(this);
     }
@@ -44,12 +50,8 @@ function combineCreated(created, isFunction, be_invokeInitVMP, COMPONENT_TYPE) {
  * @param {function} attached [required] 原始的attached函数
  * @returns {function} 合成后的attached函数
  */
-function combineAttached(attached, isFunction, be_invokeParse, be_invokeDecorate) {
+function combineAttached(attached, isFunction) {
   return function () {
-    if (this && this.vmp) {
-      be_invokeDecorate(this, this.vmp);
-      be_invokeParse(this, this.vmp);
-    }
 
     if (isFunction(attached)) {
       attached.call(this);
@@ -84,7 +86,7 @@ function combineDetached(detached, isFunction, be_invokeWash, be_invokeDestroyVM
 function combineComponentLife(component = {}) {
   return {
     created: combineCreated(component.created, isFunction, be_invokeInitVMP, COMPONENT_TYPE),
-    attached: combineAttached(component.attached, isFunction, be_invokeParse, be_invokeDecorate),
+    attached: combineAttached(component.attached, isFunction),
     detached: combineDetached(component.detached, isFunction, be_invokeWash, be_invokeDestroyVMP),
     ready: component.ready,
     moved: component.moved,
