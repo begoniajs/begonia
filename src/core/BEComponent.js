@@ -85,7 +85,7 @@ function combineDetached(detached, isFunction, be_invokeWash, be_invokeDestroyVM
  */
 function combineComponentLife(component = {}) {
   return {
-    created: combineCreated(component.created, isFunction, be_invokeInitVMP, COMPONENT_TYPE),
+    created: combineCreated(component.created, isFunction, be_invokeInitVMP, be_invokeParse, be_invokeDecorate, COMPONENT_TYPE),
     attached: combineAttached(component.attached, isFunction),
     detached: combineDetached(component.detached, isFunction, be_invokeWash, be_invokeDestroyVMP),
     ready: component.ready,
