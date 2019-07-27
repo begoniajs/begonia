@@ -91,7 +91,13 @@ export default {
           return this.data[item];
         },
         set(value) {
-          this.commit(item, value);
+          if (this && this.vmp) {
+            this.commit(item, value);
+          } else {
+            if (_debug) {
+              console.error('In VMP beStates parse(), can not find the master or vmp', this);
+            }
+          }
         }
       };
       return prev;
@@ -108,13 +114,21 @@ export default {
       return;
     }
     master.commit = function(...args) {
-      if (this.vmp) {
+      if (this && this.vmp) {
         this.vmp.commit.apply(this.vmp, args);
+      } else {
+        if (_debug) {
+          console.error('In VMP beStates decorate() master.commit, can not find the master or vmp', this);
+        }
       }
     };
     master.validateNow = function() {
-      if (this.vmp) {
+      if (this && this.vmp) {
         this.vmp.validateNow();
+      } else {
+        if (_debug) {
+          console.error('In VMP beStates decorate() master.validateNow, can not find the master or vmp', this);
+        }
       }
     };
   },
